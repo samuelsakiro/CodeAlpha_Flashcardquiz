@@ -3,8 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'flashcard.dart';
 
-
-
 class FlashcardCard extends StatelessWidget {
   final Flashcard flashcard;
   final bool showAnswer;
@@ -31,7 +29,6 @@ class FlashcardCard extends StatelessWidget {
           ),
           color: showAnswer ? Colors.amber.shade100 : Colors.indigo.shade100,
           child: Container(
-            height: 280,
             width: double.infinity,
             padding: const EdgeInsets.all(24),
             child: Column(
@@ -45,13 +42,15 @@ class FlashcardCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                Text(
-                  showAnswer ? flashcard.answer : flashcard.question,
-                  style: GoogleFonts.robotoSlab(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600,
+                SingleChildScrollView(
+                  child: Text(
+                    showAnswer ? flashcard.answer : flashcard.question,
+                    style: GoogleFonts.robotoSlab(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ],
             ),

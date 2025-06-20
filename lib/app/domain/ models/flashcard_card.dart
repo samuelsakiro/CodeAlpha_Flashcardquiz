@@ -29,6 +29,7 @@ class FlashcardCard extends StatelessWidget {
           ),
           color: showAnswer ? Colors.amber.shade100 : Colors.indigo.shade100,
           child: Container(
+            height: 250,
             width: double.infinity,
             padding: const EdgeInsets.all(24),
             child: Column(
@@ -42,14 +43,28 @@ class FlashcardCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                SingleChildScrollView(
-                  child: Text(
-                    showAnswer ? flashcard.answer : flashcard.question,
-                    style: GoogleFonts.robotoSlab(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    textAlign: TextAlign.center,
+                Expanded(
+                  child: LayoutBuilder(
+                    builder:
+                        (context, constraints) => SingleChildScrollView(
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minHeight: constraints.maxHeight,
+                            ),
+                            child: Center(
+                              child: Text(
+                                showAnswer
+                                    ? flashcard.answer
+                                    : flashcard.question,
+                                style: GoogleFonts.robotoSlab(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
                   ),
                 ),
               ],
